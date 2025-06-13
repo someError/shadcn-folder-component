@@ -6,7 +6,11 @@ Add shadcn component as folder
 No installation needed. Just use with `npx`:
 
 ```bash
-npx shadcnf add <component-name>
+npx shadcnf@latest add <component-name>
+```
+
+```bash
+npx shadcnf@latest add button
 ```
 
 Reads your config - Automatically detects paths from components.json and tsconfig.json

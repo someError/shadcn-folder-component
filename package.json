@@ -1,6 +1,6 @@
 {
   "name": "shadcnf",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Restructure shadcn/ui components to folder-based structure",
   "main": "index.js",
   "bin": {
