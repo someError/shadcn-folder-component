@@ -25,7 +25,7 @@ Reads your config - Automatically detects paths from components.json and tsconfi
 
 ## Configuration
 
-> Make sure you have shadcn properly set up for your environment and verify that component creation is working correctly.
+> Make sure you have shadcn properly set up for your environment and verify that component creation is working correctly. [Installation](https://ui.shadcn.com/docs/installation)
 
 > If you're using Next.js with TypeScript aliases — it works out of the box.
 
