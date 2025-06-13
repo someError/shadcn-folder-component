@@ -121,48 +121,6 @@ async function main() {
         console.error(`Installing error ${component}:`, error.message);
          process.exit(1);
     }
-
-
-    //   const noInstall = args.includes('--no-install');
-    //   const components = args.filter(arg => !arg.startsWith('--'));
-
-    // if (components.length === 0) {
-    //     console.error('error no args');
-    //     process.exit(1);
-    // }
-
-    // try {
-    //     const uiPath = getUiPathFromConfig();
-    //     console.log(uiPath)
-    //     console.log(`UI path: ${path.relative(process.cwd(), uiPath)}`);
-
-    //     if (!fs.existsSync(path.join(process.cwd(), 'components.json'))) {
-    //         console.log('components.json not found');
-    //     }
-    //     // if (!noInstall) {
-    //     //     for (const component of components) {
-    //     //         try {
-    //     //             console.log(`installing ${component}...`);
-    //     //             execSync(`npx shadcn@latest add ${component}`, { stdio: 'inherit' });
-    //     //         } catch (error) {
-    //     //             console.error(`Installing error ${component}:`, error.message);
-    //     //         }
-    //     //     }
-    //     // }
-
-    //     let successCount = 0;
-
-    //     for (const component of components) {
-    //         const success = await restructureComponent(component, uiPath);
-    //         if (success) successCount++;
-    //     }
-
-    //     console.log(`\n done!`);
-
-    // } catch (error) {
-    //     console.error('Error:', error.message);
-    //     process.exit(1);
-    // }
 }
 
 main().catch(console.error); 
