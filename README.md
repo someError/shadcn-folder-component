@@ -1,15 +1,23 @@
 # shadcn-folder-component
 Automatically transforms `shadcn/ui` components into a folder-based structure.
 
-## Requirements
+## Configuration
 
-> This tool **only works** in projects that meet the following conditions:
+> If you're using **Next.js** with **TypeScript aliases** set up — you're all set.
+  **No config needed.**
 
-- Built with **Next.js**
-- Uses **TypeScript**
-- Has **path aliases** set up in `tsconfig.json`
-- Includes a valid **`components.json`** file
+> If not, run the init command:
 
+```bash
+npx shadcnf@latest init
+```
+This creates a **shadcnf.json** file in your project root.
+Inside, set the **absolute path** to your ui folder:
+```bash
+{
+  "uiPath": "/absolute/path/to/components/ui"
+}
+```
 ---
 
 ## Installation
@@ -38,3 +46,5 @@ Installs shadcn/ui components and restructures them from flat files to organized
 components/ui/card.tsx    →    components/ui/card/index.tsx
 components/ui/button.tsx  →    components/ui/button/index.tsx
 ```
+
+📦 npm: [shadcnf](https://www.npmjs.com/package/shadcnf)

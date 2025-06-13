@@ -44,6 +44,17 @@ function resolveAlias(aliasPath) {
 }
 
 function getUiPathFromConfig() {
+    const configShadcnfPath = path.join(process.cwd(), 'shadcnf.json');
+    if (fs.existsSync(configShadcnfPath)) {
+        try {
+            const fileData = fs.readFileSync(configShadcnfPath, 'utf8');
+            const config = JSON.parse(fileData);
+            const uiPath = config.uiPath;
+            return uiPath;
+        } catch (err) {
+            throw new Error('error parsing shadcnf.json');
+        }
+    }
     try {
         const configPath = path.join(process.cwd(), 'components.json');
 
@@ -101,6 +112,17 @@ async function main() {
     const args = process.argv.slice(2);
     const [command, component] = args;
 
+    if (command === 'init') {
+        const filePath = path.join(process.cwd(), 'shadcnf.json');
+
+        const defaultConfig = {
+            uiPath: process.cwd()
+        };
+
+        fs.writeFileSync(filePath, JSON.stringify(defaultConfig, null, 2), 'utf8');
+        process.exit(0);
+    }
+
     if (command !== 'add') {
         console.error('supporting only add command');
         process.exit(1);
@@ -119,7 +141,7 @@ async function main() {
         console.log(`\n done!`);
     } catch (error) {
         console.error(`Installing error ${component}:`, error.message);
-         process.exit(1);
+        process.exit(1);
     }
 }
 
