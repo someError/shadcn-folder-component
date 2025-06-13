@@ -43,9 +43,14 @@ function resolveAlias(aliasPath) {
     return aliasPath;
 }
 
+function hasShadcnfConfig() {
+    const configShadcnfPath = path.join(process.cwd(), 'shadcnf.json');
+    return fs.existsSync(configShadcnfPath)
+}
+
 function getUiPathFromConfig() {
     const configShadcnfPath = path.join(process.cwd(), 'shadcnf.json');
-    if (fs.existsSync(configShadcnfPath)) {
+    if (hasShadcnfConfig()) {
         try {
             const fileData = fs.readFileSync(configShadcnfPath, 'utf8');
             const config = JSON.parse(fileData);
@@ -82,10 +87,9 @@ function getUiPathFromConfig() {
     }
 }
 
-async function restructureComponent(componentName, uiPath) {
-    console.log(uiPath)
+async function restructureComponent(componentName, uiPath, inputComponent) {
     try {
-        const componentFile = path.join(uiPath, `${componentName}.tsx`);
+        let componentFile = inputComponent || path.join(uiPath, `${componentName}.tsx`);
         const componentDir = path.join(uiPath, componentName);
         const indexFile = path.join(componentDir, 'index.tsx');
 
@@ -136,12 +140,32 @@ async function main() {
     try {
         console.log(`installing ${component}...`);
         const uiPath = getUiPathFromConfig();
-        execSync(`npx shadcn@latest add ${component}`, { stdio: 'inherit' });
-        await restructureComponent(component, uiPath);
+        const output = execSync(`npx shadcn@latest add ${component}`,{ encoding: 'utf-8' });
+        console.log('Output:', output);
+
+        let inputComponent
+
+        if (hasShadcnfConfig()) {
+            inputComponent = getComponentPathFromStdio(output)
+        }
+
+        await restructureComponent(component, uiPath, inputComponent);
         console.log(`\n done!`);
     } catch (error) {
         console.error(`Installing error ${component}:`, error.message);
         process.exit(1);
+    }
+}
+
+function getComponentPathFromStdio(output) {
+    console.log(output, 'output wtf')
+    const match = output.match(/-\s(.+\.tsx)/);
+    if (match) {
+        const filePath = match[1];
+        console.log(filePath, 'from output')
+        return filePath
+    } else {
+        throw new Error('error parsing chadcn stdio')
     }
 }
 
