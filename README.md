@@ -1,4 +1,5 @@
 # shadcn-folder-component
+### Works on top of an already configured original [SHADCN](https://ui.shadcn.com/docs/installation) setup
 Automatically transforms `shadcn/ui` components into a folder-based structure.
 
 ##  What it does
