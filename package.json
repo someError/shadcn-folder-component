@@ -1,0 +1,29 @@
+{
+  "name": "shadcnf",
+  "version": "1.0.0",
+  "description": "Restructure shadcn/ui components to folder-based structure",
+  "main": "index.js",
+  "bin": {
+    "shadcnf": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shadcn",
+    "ui",
+    "components",
+    "folder",
+    "structure",
+    "cli"
+  ],
+  "author": "Ваше имя",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/someError/shadcn-folder-component.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
