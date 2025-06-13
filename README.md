@@ -1,5 +1,16 @@
 # shadcn-folder-component
-Add shadcn component as folder
+Automatically transforms `shadcn/ui` components into a folder-based structure.
+
+## Requirements
+
+> This tool **only works** in projects that meet the following conditions:
+
+- Built with **Next.js**
+- Uses **TypeScript**
+- Has **path aliases** set up in `tsconfig.json`
+- Includes a valid **`components.json`** file
+
+---
 
 ## Installation
 
